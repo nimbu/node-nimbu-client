@@ -17,8 +17,8 @@ test('get /channels', t => {
 
   return nimbu
     .get('/channels')
-    .then(apps => {
-      t.is(apps[0].name, 'foo');
+    .then(channels => {
+      t.is(channels[0].name, 'foo');
     })
     .then(() => t.true(api.isDone()));
 });
@@ -41,9 +41,9 @@ test('get /channels with pagination', t => {
 
   return nimbu
     .get('/channels', { fetchAll: true })
-    .then(apps => {
-      t.is(apps[0].name, 'foo');
-      t.is(apps[1].name, 'bar');
+    .then(channels => {
+      t.is(channels[0].name, 'foo');
+      t.is(channels[1].name, 'bar');
     })
     .then(() => t.true(api1.isDone() && api2.isDone()));
 });
@@ -80,15 +80,15 @@ test('delete /channels', t => {
   return nimbu.delete('/channels', { body: { name: 'foo' } }).then(() => t.true(api.isDone()));
 });
 
-test('non-http', t => {
+test('non-https', t => {
   let api = nock('http://api.nimbu.io')
     .get('/channels')
     .reply(200, [{ name: 'foo' }]);
 
   return nimbu
     .get('/channels', { host: 'http://api.nimbu.io' })
-    .then(apps => {
-      t.is(apps[0].name, 'foo');
+    .then(channels => {
+      t.is(channels[0].name, 'foo');
     })
     .then(() => api.isDone());
 });
