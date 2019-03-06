@@ -1,9 +1,12 @@
 sudo: false
 language: node_js
 node_js:
-  - 6
-  - 8
-  - 10
-  - 11
+- 6
+- 8
+- 10
+- 11
 after_success:
-  - nyc report --reporter=text-lcov > coverage.lcov && codecov
+- nyc report --reporter=text-lcov > coverage.lcov && codecov
+notifications:
+  slack:
+    secure: aCRyjnAOYIRC+XT8T90MroaOrwjfbilbapx5mKyaJGYBeTBNhp7zwRBW+DtRZ+PpeZ2B3biEbCl4A11W6uKeFohx+ZbTlElaFNJlJ26QQz9wNOzAu7V5HXmunKroVT/oxEw3rSaSzHH2bZxnrXI8e3+8lIr44C2Djkl1HnYLS2/QwtqFM6RNivAnjCwlzgm6sUjYqvRgLyavZNNVgeatGZjRnSAtUOf65Z66FVIcaV3e5KshlSFYI7Skg8fs82hQtzcr2mcOJ4MKBMCdxD67o/AfK22zUvgE4i01kwxV+aZGaVIHOKrg3Jg5lb8ZC9SJaBbEli+hEyr1c50gmhSjVYwv2QW7OBS2gXtyvzhQbYOKw5Zt1kC4WzYY/5+bs1R+fJAQ0MZlDCM1uzklBNX57+Y3+DRGrWIqDfqntyyplue+LVKChZiVYn0MQUE5YWXWtBfe6wKUGxkxPcXdm6WAiLPFsdPn2U49ieYA1D5v2hpkc4HtatjrpdiOY3ViF/OcGnjoxcRMXkc+5fxac8B6+TJDX/Gvx6GUPNJMW9i3cB+kQrtmdLT1YvffSpdYhANwQHMssFNyzPYbpm/ns8KJ4z5f2yUsg7nXDBd7DTKayitjpqIH4Sc3cbb3KwG1D+HJC8dktYSY+UDBW5bNWtKPPTZiOUZrvOTHS96gy8B8UuI=
