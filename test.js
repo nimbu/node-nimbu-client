@@ -10,6 +10,41 @@ test.before(() => {
   nock.disableNetConnect();
 });
 
+test('allow to specify a site id', t => {
+  let api = nock('https://api.nimbu.io', {
+    reqheaders: {
+      'X-Nimbu-Site': 'foo',
+      'X-Nimbu-Client-Version': 'v1.2.3',
+    },
+  })
+    .get('/channels')
+    .reply(200, [{ name: 'foo' }]);
+
+  return new Nimbu({ site: 'foo', clientVersion: 'v1.2.3' })
+    .get('/channels')
+    .then(channels => {
+      t.is(channels[0].name, 'foo');
+    })
+    .then(() => t.true(api.isDone()));
+});
+
+test('allow to specify the user agent', t => {
+  let api = nock('https://api.nimbu.io', {
+    reqheaders: {
+      'User-Agent': 'foo',
+    },
+  })
+    .get('/channels')
+    .reply(200, [{ name: 'foo' }]);
+
+  return new Nimbu({ userAgent: 'foo' })
+    .get('/channels')
+    .then(channels => {
+      t.is(channels[0].name, 'foo');
+    })
+    .then(() => t.true(api.isDone()));
+});
+
 test('get /channels', t => {
   let api = nock('https://api.nimbu.io')
     .get('/channels')
