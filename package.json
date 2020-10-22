@@ -12,10 +12,11 @@
     "tunnel-agent": "^0.6.0"
   },
   "devDependencies": {
-    "ava": "^2.2.0",
+    "ava": "^3.13",
     "codecov": "^3.5.0",
     "debug": "^4.1.1",
-    "nock": "^10.0.6",
+    "esm": "^3.2.25",
+    "nock": "^13.0.4",
     "nyc": "^14.1.1",
     "standard": "^13.0.1"
   },
@@ -33,6 +34,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/nimbu/node-nimbu-client"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ],
+    "nodeArguments": [
+      "--trace-deprecation"
+    ]
   },
   "scripts": {
     "test": "nyc ava --verbose",
