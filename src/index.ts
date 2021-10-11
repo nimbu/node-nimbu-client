@@ -9,31 +9,31 @@ export class Nimbu {
     this.options = options || {}
   }
 
-  get(path: string, options?: RequestOptions) {
-    return this.request(Object.assign({}, options, { method: 'GET', path: path }))
+  get<T = any>(path: string, options?: RequestOptions) {
+    return this.request<T>(Object.assign({}, options, { method: 'GET', path: path }))
   }
 
-  put(path: string, options?: RequestOptions) {
-    return this.request(Object.assign({}, options, { method: 'PUT', path: path }))
+  put<T = any>(path: string, options?: RequestOptions) {
+    return this.request<T>(Object.assign({}, options, { method: 'PUT', path: path }))
   }
 
-  post(path: string, options?: RequestOptions) {
-    return this.request(Object.assign({}, options, { method: 'POST', path: path }))
+  post<T = any>(path: string, options?: RequestOptions) {
+    return this.request<T>(Object.assign({}, options, { method: 'POST', path: path }))
   }
 
-  patch(path: string, options?: RequestOptions) {
-    return this.request(Object.assign({}, options, { method: 'PATCH', path: path }))
+  patch<T = any>(path: string, options?: RequestOptions) {
+    return this.request<T>(Object.assign({}, options, { method: 'PATCH', path: path }))
   }
 
-  delete(path: string, options?: RequestOptions) {
-    return this.request(Object.assign({}, options, { method: 'DELETE', path: path }))
+  delete<T = any>(path: string, options?: RequestOptions) {
+    return this.request<T>(Object.assign({}, options, { method: 'DELETE', path: path }))
   }
 
-  request(options: RequestOptions) {
+  request<T = any>(options: RequestOptions) {
     options = options || {}
     options.headers = Object.assign(Object.assign({}, this.options.headers), options.headers)
     options = Object.assign({}, this.options, options)
-    let request = new Request(options)
+    let request = new Request<T>(options)
     return request.request()
   }
 }

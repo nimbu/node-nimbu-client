@@ -54,7 +54,10 @@ export type RequestOptions = {
   userAgent?: string
 }
 
-export class Request {
+type BaseType<T> = T extends Array<infer U> ? U : T
+type PossibleArray<U> = U | Array<U>
+
+export class Request<T = any> {
   options: RequestOptions
 
   debug: boolean = false
@@ -72,14 +75,14 @@ export class Request {
   port?: number
   secure?: boolean
   certs: string[]
-  promise: Promise<any>
-  resolve: (value: unknown) => void = () => {}
+  promise: Promise<T>
+  resolve: (value: T) => void = () => {}
   reject: (reason?: any) => void = () => {}
   middleware: (response: http.IncomingMessage, fn: () => void) => void
 
   onNextPage?: (nextPage: string, lastPage: string) => void
   agent?: http.Agent | https.Agent
-  aggregate?: string[]
+  aggregate?: T
   retries?: number
 
   constructor(options: RequestOptions) {
@@ -281,7 +284,7 @@ export class Request {
       }
     } else {
       this.updateAggregate(body)
-      this.resolve(this.aggregate)
+      this.resolve(this.aggregate!)
     }
   }
 
@@ -294,10 +297,10 @@ export class Request {
     this.request()
   }
 
-  updateAggregate(aggregate: any) {
-    if (aggregate instanceof Array) {
-      this.aggregate = this.aggregate || []
-      this.aggregate = this.aggregate.concat(aggregate)
+  updateAggregate(aggregate: T) {
+    if (Array.isArray(aggregate)) {
+      this.aggregate = (this.aggregate ?? []) as T
+      this.aggregate = (this.aggregate as any).concat(aggregate) as T
     } else {
       this.aggregate = aggregate
     }
