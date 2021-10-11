@@ -8,17 +8,23 @@
   },
   "dependencies": {
     "is-retry-allowed": "^1.1.0",
-    "semver": "^6.2.0",
     "tunnel-agent": "^0.6.0"
   },
   "devDependencies": {
-    "ava": "^3.13",
+    "@ava/typescript": "^2.0.0",
+    "@types/debug": "^4.1.7",
+    "@types/node": "^16.10.3",
+    "@types/semver": "^7.3.8",
+    "ava": "^3",
     "codecov": "^3.5.0",
     "debug": "^4.1.1",
     "esm": "^3.2.25",
     "nock": "^13.0.4",
     "nyc": "^14.1.1",
-    "standard": "^13.0.1"
+    "standard": "^13.0.1",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "typescript": "^4.4.3"
   },
   "engines": {
     "node": ">=10.13.0"
@@ -36,15 +42,17 @@
     "url": "https://github.com/nimbu/node-nimbu-client"
   },
   "ava": {
-    "require": [
-      "esm"
+    "extensions": [
+      "ts"
     ],
-    "nodeArguments": [
-      "--trace-deprecation"
+    "require": [
+      "ts-node/register"
     ]
   },
   "scripts": {
+    "build": "rm -rf lib && tsc -b",
     "test": "nyc ava --verbose",
     "watch:test": "nyc ava --watch --verbose"
-  }
+  },
+  "types": "./lib/index.d.ts"
 }

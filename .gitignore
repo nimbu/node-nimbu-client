@@ -107,3 +107,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Typescript incremental build files
+tsconfig.tsbuildinfo
+yarn.lock
