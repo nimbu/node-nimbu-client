@@ -1,6 +1,6 @@
-import { Request as NimbuRequest, RequestOptions } from './request'
+import { Request, RequestOptions } from './request'
 
-export const Request = NimbuRequest
+export { HTTPError, Request, RequestOptions } from './request'
 
 export class Nimbu {
   options: RequestOptions
