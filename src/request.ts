@@ -208,20 +208,19 @@ export class Request<T = any> {
     }
 
     let request: http.ClientRequest
-    if (this.secure) {
-      request = https.request(requestOptions, this.handleResponse.bind(this))
-    } else {
+    let httpModule = this.secure ? 'https' : 'http'
+    return import(httpModule).then((http) => {
       request = http.request(requestOptions, this.handleResponse.bind(this))
-    }
 
-    this.logRequest(request, requestOptions)
-    this.writeBody(request)
-    this.setRequestTimeout(request)
+      this.logRequest(request, requestOptions)
+      this.writeBody(request)
+      this.setRequestTimeout(request)
 
-    request.on('error', this.onError.bind(this))
-    request.end()
+      request.on('error', this.onError.bind(this))
+      request.end()
 
-    return this.promise
+      return this.promise
+    })
   }
 
   handleResponse(res: http.IncomingMessage) {
