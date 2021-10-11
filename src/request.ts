@@ -1,4 +1,4 @@
-import * as url from 'url'
+import { URL } from 'url'
 import Debug from 'debug'
 import * as http from 'http'
 import * as https from 'https'
@@ -6,12 +6,12 @@ import * as https from 'https'
 const debug = Debug('http')
 const debugHeaders = Debug('http')
 
-const parseUrl = function (source) {
+const parseUrl = function (source: string) {
   if (source.indexOf('http') !== 0 && source.indexOf('https') !== 0) {
     source = 'https://' + source
   }
 
-  let parsedUrl = url.parse(source)
+  let parsedUrl = new URL(source)
   let port = parsedUrl.port
   if (!port) {
     if (parsedUrl.protocol === 'https:') {
@@ -35,7 +35,7 @@ export type RequestOptions = {
   body?: any
   clientVersion?: string
   debug?: boolean
-  debugHeaders?: any
+  debugHeaders?: boolean
   fetchAll?: boolean
   headers?: http.OutgoingHttpHeaders
   host?: string
@@ -58,7 +58,7 @@ export class Request {
   options: RequestOptions
 
   debug: boolean = false
-  debugHeaders?: any
+  debugHeaders: boolean = false
   path?: string | null
   token?: string
   sessionToken?: string
@@ -84,8 +84,8 @@ export class Request {
 
   constructor(options: RequestOptions) {
     this.options = options || {}
-    this.debug = !!options.debug
-    this.debugHeaders = options.debugHeaders
+    this.debug = options.debug ?? false
+    this.debugHeaders = options.debugHeaders ?? false
     this.path = options.path
     this.token = options.token
     this.sessionToken = options.sessionToken
@@ -93,7 +93,7 @@ export class Request {
     this.userAgent = options.userAgent
     this.clientVersion = options.clientVersion
     this.logger = options.logger
-    this.fetchAll = !!options.fetchAll
+    this.fetchAll = options.fetchAll ?? true
     this.onNextPage = options.onNextPage
 
     let url = parseUrl(options.host || 'https://api.nimbu.io')
@@ -288,8 +288,8 @@ export class Request {
   nextRequest(nextUrl: string, body: any) {
     this.updateAggregate(body)
 
-    const nextUrlParsed = url.parse(nextUrl)
-    this.path = nextUrlParsed.path
+    const nextUrlParsed = new URL(nextUrl)
+    this.path = nextUrlParsed.pathname + nextUrlParsed.search
 
     this.request()
   }
