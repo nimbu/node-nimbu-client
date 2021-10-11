@@ -52,7 +52,8 @@
   "scripts": {
     "build": "rm -rf lib && tsc -b",
     "test": "nyc ava --verbose",
-    "watch:test": "nyc ava --watch --verbose"
+    "watch:test": "nyc ava --watch --verbose",
+    "version": "build"
   },
   "types": "./lib/index.d.ts"
 }
