@@ -16,7 +16,6 @@
     "@types/node": "^16.10.3",
     "@types/semver": "^7.3.8",
     "ava": "^3",
-    "codecov": "^3.5.0",
     "debug": "^4.1.1",
     "esm": "^3.2.25",
     "nock": "^13.0.4",
@@ -52,7 +51,7 @@
   },
   "scripts": {
     "build": "rm -rf lib && tsc -b",
-    "test": "nyc ava --verbose",
+    "test": "nyc --reporter=lcov ava --verbose",
     "watch:test": "nyc ava --watch --verbose",
     "version": "yarn build"
   },

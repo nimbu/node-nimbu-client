@@ -1,7 +1,8 @@
 # nimbu-client
 
 ![Build Status](https://github.com/nimbu/node-nimbu-client/actions/workflows/ci.yaml/badge.svg)
-
+[![codecov](https://codecov.io/gh/nimbu/node-nimbu-client/branch/master/graph/badge.svg)](https://codecov.io/gh/nimbu/node-nimbu-client)
+  
 A thin wrapper around the [Nimbu](https://www.nimbu.io) API.
 
 - [nimbu-client](#nimbu-client)

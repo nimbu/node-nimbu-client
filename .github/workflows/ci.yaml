@@ -9,6 +9,8 @@ jobs:
         node: ['12', '14', '16']
       fail-fast: false
     name: Test using Node ${{ matrix.node }}
+    env:
+      NODE_VERSION: ${{ matrix.node }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
@@ -17,3 +19,12 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: yarn
       - run: yarn test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/
+          env_vars: NODE_VERSION
+          fail_ci_if_error: true
+          flags: unittests
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
