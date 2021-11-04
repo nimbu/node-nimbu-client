@@ -1,7 +1,6 @@
 # nimbu-client
 
-[![Build Status](https://travis-ci.org/nimbu/node-nimbu-client.png?branch=master)](https://travis-ci.org/nimbu/node-nimbu-client)
-[![codecov](https://codecov.io/gh/nimbu/node-nimbu-client/branch/master/graph/badge.svg)](https://codecov.io/gh/nimbu/node-nimbu-client)
+![Build Status](https://github.com/nimbu/node-nimbu-client/actions/workflows/ci.yaml/badge.svg)
 
 A thin wrapper around the [Nimbu](https://www.nimbu.io) API.
 
