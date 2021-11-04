@@ -51,6 +51,7 @@
   },
   "scripts": {
     "build": "rm -rf lib && tsc -b",
+    "prepack": "yarn run build",
     "test": "nyc --reporter=lcov ava --verbose",
     "watch:test": "nyc ava --watch --verbose",
     "version": "yarn build"
