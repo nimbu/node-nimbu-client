@@ -15,9 +15,10 @@
     "sourceMap": false,
     "strict": true /* Enable all strict type-checking options. */,
     "target": "es2017",
-    "types": ["node"]
+    "types": ["node", "jest"]
 },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "test"
   ]
 }
