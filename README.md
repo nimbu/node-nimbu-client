@@ -23,7 +23,14 @@ To begin, require the Nimbu module and create the client, passing in an API
 token:
 
 ```javascript
-const Nimbu = require('nimbu-client');
+const Nimbu = require('nimbu-client').default;
+const nimbu = new Nimbu({ token: apiToken });
+```
+
+Or in Typescript:
+
+```typescript
+import Nimbu from 'nimbu-client';
 const nimbu = new Nimbu({ token: apiToken });
 ```
 
