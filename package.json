@@ -44,14 +44,6 @@
     "type": "git",
     "url": "https://github.com/nimbu/node-nimbu-client"
   },
-  "ava": {
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
-  },
   "scripts": {
     "build": "rm -rf lib && tsc -b",
     "prepack": "yarn run build",
