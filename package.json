@@ -1,7 +1,7 @@
 {
   "name": "nimbu-client",
   "description": "A thin wrapper for the Nimbu API",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "author": "Peter Dedene",
   "bugs": {
     "url": "https://github.com/nimbu/node-nimbu-client/issues"
