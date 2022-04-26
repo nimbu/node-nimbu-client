@@ -16,9 +16,6 @@
     "strict": true /* Enable all strict type-checking options. */,
     "target": "es2017",
     "types": ["node", "jest"]
-},
-  "include": [
-    "./src/**/*",
-    "test"
-  ]
+  },
+  "include": ["./src/**/*"]
 }
