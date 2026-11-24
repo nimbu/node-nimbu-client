@@ -1,5 +1,9 @@
 # nimbu-client
 
+> [!WARNING]
+> **Deprecated.** This package is no longer maintained and receives no security updates.
+> Use the [Nimbu Go CLI](https://github.com/nimbu/cli) or call the Nimbu REST API directly.
+
 ![Build Status](https://github.com/nimbu/node-nimbu-client/actions/workflows/ci.yaml/badge.svg)
 [![codecov](https://codecov.io/gh/nimbu/node-nimbu-client/branch/master/graph/badge.svg)](https://codecov.io/gh/nimbu/node-nimbu-client)
   
